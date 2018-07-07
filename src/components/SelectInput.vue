@@ -1,8 +1,8 @@
 <template>
   <div class="select-input" :style="style">
     <label v-if="label" :for="this.nameId">{{ label }}</label>
-    <select class="select-tag" :name="this.nameId" id="">
-      <option disabled value="">--Escolha uma opcao</option>
+    <select @change="emitSelection" v-model="value" class="select-tag" :name="this.nameId" id="">
+      <option v-if="displayDefaultOption" disabled :selected="displayDefaultOption" value="">Escolha uma opcao</option>
       <slot></slot>
     </select>
   </div>
@@ -24,8 +24,25 @@ export default {
       required: false,
       default: '',
       type: String
+    },
+    displayDefaultOption: {
+      required: false,
+      default: true
     }
   },
+
+  data () {
+    return {
+      value: ''
+    }
+  },
+
+  methods: {
+    emitSelection () {
+      this.$emit('onChange', this.value)
+    }
+  },
+
   computed: {
     style () {
       return `width: ${this.widths}`

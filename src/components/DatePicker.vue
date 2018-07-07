@@ -11,7 +11,7 @@ yarn add vue-flatpickr-component -->
       <slot></slot>
     </label>
     <div class="datewrapper">
-      <flat-pickr :placeholder="this.placeholder" class="datepicker" :config="config" v-model="date"></flat-pickr>
+      <flat-pickr :placeholder="this.placeholder" class="datepicker" :config="config" v-model="date" @change.native="sendDate"></flat-pickr>
       <div class="input-group-btn">
         <button class="" type="button" title="Toggle" data-toggle>
           <i v-if="clock" class="far fa-clock"></i>
@@ -64,6 +64,11 @@ export default {
   computed: {
     style () {
       return `width: ${this.widths}`
+    }
+  },
+  methods: {
+    sendDate () {
+      this.$emit('receiveDate', this.date);
     }
   },
   created () {

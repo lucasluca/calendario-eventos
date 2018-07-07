@@ -3,7 +3,7 @@
     <label :for="this.nameId">
       <slot></slot>
     </label>
-    <input type="text" :placeholder="this.placeholder" :name="this.nameId">
+    <input :value="value" @input="handleInput($event.target.value)" :type="inputType" :placeholder="this.placeholder" :name="this.nameId">
     <small v-if="this.instruction">{{ instruction }}</small>
   </div>
 </template>
@@ -14,12 +14,13 @@ export default {
   props: {
     nameId: {
       required: false,
-      type: String
+      type: String,
+      default: ''
     },
     placeholder: {
       required: false,
       type: String,
-      default: 'Insert a value in the component'
+      default: 'Placeholder prop'
     },
     instruction: {
       required: false,
@@ -35,6 +36,23 @@ export default {
       required: false,
       type: String,
       default: 'none'
+    },
+    inputType: {
+      required: false,
+      type: String,
+      default: 'text'
+    },
+    value: {
+      default: ''
+    }
+  },
+  data () {
+    return {
+    }
+  },
+  methods: {
+    handleInput (e) {
+      this.$emit('input', e)
     }
   },
   computed: {
@@ -58,6 +76,7 @@ export default {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  position: relative;
   label {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
@@ -73,6 +92,7 @@ export default {
     height: 37px;
     width: 100%;
     border: 1px solid #ebedf2;
+    outline: none;
     // margin-bottom: 0.3em;
   }
   small {

@@ -7,10 +7,6 @@
     <div class="body">
       <slot></slot>
     </div>
-    <div class="footer">
-      <button-air class="button-air" estilo="secundario">Cancelar</button-air>
-      <button-air>Confirmar</button-air>
-    </div>
   </div>
 </template>
 
