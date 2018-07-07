@@ -1,13 +1,22 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <Botao/>
+    <Calendario/>
   </div>
 </template>
 
 <script>
+import Calendario from '@/components/Calendario'
+import Botao from '@/components/Botao'
+import FormModal from '@/components/FormModal'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Calendario,
+    Botao,
+    'form-modal': FormModal
+  }
 }
 </script>
 
