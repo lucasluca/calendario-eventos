@@ -1,7 +1,8 @@
 <template>
   <div class="category-modal">
     <div class="header">
-      <h3>{{ title }}</h3>
+      <h3 v-if="!title">Insira um Evento</h3>
+      <h3 v-if="title">Editar Evento</h3>
       <i @click="closeModal" class="fas fa-times"></i>
     </div>
     <div class="body">
@@ -23,9 +24,9 @@ export default {
   },
   props: {
     title: {
-      default: 'Insert a title prop in the tag',
+      default: false,
       required: false,
-      type: String
+      type: Boolean
     }
   },
   methods: {

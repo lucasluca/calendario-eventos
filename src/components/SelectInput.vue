@@ -31,12 +31,18 @@ export default {
     },
     getBackDefault: {
       required: false
+    },
+    actualOption: {
+      required: false
     }
   },
 
   watch: {
-    getBackDefault() {
+    getBackDefault () {
       this.value = '';
+    },
+    actualOption () {
+      this.value = this.actualOption;
     }
   },
 

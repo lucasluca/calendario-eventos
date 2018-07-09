@@ -8,10 +8,11 @@ yarn add vue-flatpickr-component -->
 <template>
   <div class="datetimeinput" :style="style">
     <label class="label" for="">
-      <slot></slot>
+      <slot name="label"></slot>
     </label>
     <div class="datewrapper">
-      <flat-pickr :placeholder="this.placeholder" class="datepicker" :config="config" v-model="date" @change.native="sendDate"></flat-pickr>
+      <slot name="picker"></slot>
+      <!-- <flat-pickr :placeholder="this.placeholder" class="datepicker" :config="config" v-model="date" @change.native="sendDate"></flat-pickr> -->
       <div class="input-group-btn">
         <button class="" type="button" title="Toggle" data-toggle>
           <i v-if="clock" class="far fa-clock"></i>
