@@ -28,6 +28,15 @@ export default {
     displayDefaultOption: {
       required: false,
       default: true
+    },
+    getBackDefault: {
+      required: false
+    }
+  },
+
+  watch: {
+    getBackDefault() {
+      this.value = '';
     }
   },
 

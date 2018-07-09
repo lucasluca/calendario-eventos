@@ -14,8 +14,7 @@
           <flat-pickr placeholder="Data Final" class="datepicker" :config="configCalendar" v-model="evento.end"></flat-pickr>
         </div>
         <br>
-        <select-input @onChange='tipoEvento' class="select-input" label="Tipo de Evento" nameId="selec-loja">
-          <option selected disabled>Nenhum tipo</option>
+        <select-input :getBackDefault='defaultSelect' @onChange='tipoEvento' class="select-input" label="Tipo de Evento" nameId="selec-loja">
           <option value="reuniao">Reunião</option>
           <option value="festa">Evento Festivo</option>
           <option value="consulta">Consulta Médica</option>
@@ -58,6 +57,7 @@ export default {
   },
   data () {
     return {
+      defaultSelect: '',
       updateIndex: '',
       evento: {
         id: 5,
@@ -91,10 +91,11 @@ export default {
         {
             id: 4,
             title  : 'Eduarda',
-            start  : '2018-07-05T12:30:00',
-            end    : '2018-07-07',
+            start  : '2018-07-09 12:00', 
+            end:  '13:00', 
             allDay : false,
-            color: 'purple'
+            color: 'purple',
+            dow: [0]
         },
         {
             id: 5,
@@ -130,6 +131,8 @@ export default {
       this.evento.local = '';
       this.evento.start = '';
       this.evento.end = '';
+      this.evento.color = '';
+      this.defaultSelect = false;
     },
     addEvent() {
       this.increment();
@@ -153,7 +156,15 @@ export default {
     },
     tipoEvento (tipo) {
       console.log(tipo);
-      if(tipo == )
+      if(tipo == 'reuniao') {
+        this.evento.color = 'green'
+      } else if(tipo == 'festa') {
+        this.evento.color = 'red'
+      } else if(tipo == 'consulta') {
+        this.evento.color = 'blue'
+      } else {
+        this.evento.color = 'black'
+      }
     }
   }
 }
